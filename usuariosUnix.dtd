@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT System (User*, Group*)>
+
+<!-- Usuario -->
+<!ELEMENT Usuario EMPTY>
+
+<!ATTLIST User nombre CDATA #REQUIRED>
+<!ATTLIST User passwd CDATA #REQUIRED> 
+<!ATTLIST User directorio CDATA #REQUIRED>
+<!ATTLIST User uid ID #REQUIRED>
+<!ATTLIST User shell (BASH|ASH|CSH|ZSH|KSH|TCSH) "BASH">
+<!ATTLIST User nombreCompleto CDATA #IMPLIED>
+<!ATTLIST User grupoPrincipal IDREF #REQUIRED>
+<!ATTLIST User grupoSecundario IDREFS #IMPLIED>
+
+<!-- Grupo -->
+<!ELEMENT Group EMPTY>
+<!ATTLIST Group nombre CDATA #REQUIRED>
+<!ATTLIST Group idusuarios IDREFS #IMPLIED>
+<!ATTLIST Group gid ID #REQUIRED>
+
