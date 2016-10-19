@@ -66,4 +66,35 @@ public class UserHandler extends DefaultHandler{
 	public void endDocument() throws SAXException{
 		System.out.println(usuarios);
 	}
+	
+	public void removeUser(User user){
+		user.getGrupoPrincipal().removeUserFromGroup(user);
+		ArrayList<Group> gruposSecundarios = user.getGrupoSecundario();
+		
+		for(int i = 0; i < gruposSecundarios.size(); i++)
+			gruposSecundarios.get(i).removeUserFromGroup(user);
+		
+		usuarios.remove(user);
+		
+	}
+	
+	public void removeGroup(Group group){
+		grupos.remove(group);
+	}
+
+	public ArrayList<User> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(ArrayList<User> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public ArrayList<Group> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(ArrayList<Group> grupos) {
+		this.grupos = grupos;
+	}
 }

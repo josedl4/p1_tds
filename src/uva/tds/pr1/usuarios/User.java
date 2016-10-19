@@ -11,7 +11,7 @@ public class User implements Serializable{
 	private EnumShell shell;
 	private String nombreCompleto;
 	private Group grupoPrincipal;
-	private Group[] grupoSecundario;
+	private ArrayList<Group> grupoSecundario;
 	private int grupoPrincipalID;
 	private ArrayList<Integer> grupoSecundarioID;
 	
@@ -46,5 +46,31 @@ public class User implements Serializable{
 		
 		return xmlStruct;
 	}
+
+	public int getuId() {
+		return uId;
+	}
+
+	public void setuId(int uId) {
+		this.uId = uId;
+	}
+
+	public Group getGrupoPrincipal() {
+		return grupoPrincipal;
+	}
+
+	public void setGrupoPrincipal(Group grupoPrincipal) {
+		this.grupoPrincipal = grupoPrincipal;
+	}
+
+	public ArrayList<Group> getGrupoSecundario() {
+		return grupoSecundario;
+	}
+
+	public void setGrupoSecundario(ArrayList<Group> grupoSecundario) {
+		this.grupoSecundario = grupoSecundario;
+	}
+	
+	
 	
 }
