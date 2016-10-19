@@ -3,6 +3,7 @@ package uva.tds.pr1.usuarios;
 import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -95,6 +96,7 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public void addUserToGroup(User user, Group group) {
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -108,11 +110,15 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void removeUserFromSystem(User user) {
 		// TODO Auto-generated method stub
+		ArrayList<Group> misGrupos = myHandler.getGrupos();
+		
 		
 	}
 
 	@Override
 	public void removeGroupFromSystem(Group group) {
+		assert(!group.getUsuarios().isEmpty());
+		myHandler.getGrupos().remove(group);
 		// TODO Auto-generated method stub
 		
 	}

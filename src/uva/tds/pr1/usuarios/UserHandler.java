@@ -18,6 +18,27 @@ public class UserHandler extends DefaultHandler{
 		grupos = new ArrayList<Group>();
 	}
 	
+	
+	public ArrayList<User> getUsuarios() {
+		return usuarios;
+	}
+
+
+	public void setUsuarios(ArrayList<User> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+
+	public ArrayList<Group> getGrupos() {
+		return grupos;
+	}
+
+
+	public void setGrupos(ArrayList<Group> grupos) {
+		this.grupos = grupos;
+	}
+
+
 	@Override
 	public void startElement(String uri, String localName, String qName, org.xml.sax.Attributes atts)
 			throws SAXException {
