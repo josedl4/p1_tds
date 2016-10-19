@@ -110,7 +110,6 @@ public class UserSystemImpl implements UserSystemInterface {
 	public void removeUserFromSystem(User user) {
 		// TODO Auto-generated method stub
 		ArrayList<Group> misGrupos = myHandler.getGrupos();
-		for()
 		
 	}
 
