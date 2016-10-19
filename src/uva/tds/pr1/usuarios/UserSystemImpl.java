@@ -38,6 +38,7 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public void updateTo(Path pathToXML) {
+		System.out.println("hola");
 		// TODO Auto-generated method stub
 		
 	}
