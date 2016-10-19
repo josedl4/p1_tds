@@ -36,5 +36,9 @@ public class Group implements Serializable{
 		
 		return xmlStruct;
 	}
+	
+	public ArrayList<User> getUsuarios() {
+		return usuarios;
+	}
 
 }
