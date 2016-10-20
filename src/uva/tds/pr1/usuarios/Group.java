@@ -57,4 +57,19 @@ public class Group implements Serializable{
 		this.usuarios = usuarios;
 	}
 
+	public boolean erasable() {
+		for(User u : usuarios){
+			if(u.getGrupoPrincipal().equals(this))
+				return false;
+		}
+		return true;
+	}
+	public int getgID() {
+		return gID;
+	}
+
+	public void setgID(int gID) {
+		this.gID = gID;
+	}
+
 }

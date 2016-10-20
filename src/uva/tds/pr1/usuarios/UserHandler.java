@@ -57,6 +57,20 @@ public class UserHandler extends DefaultHandler{
 			break;
 
 		case "Group":
+			ArrayList<Integer> usuarios = new ArrayList<Integer>(0);
+			
+			if(atts.getValue("idusuarios") != null){
+				String[] usuariosID = atts.getValue("idusuarios").split(" ");
+				
+				for(int i = 0; i < usuariosID.length; i++)
+					usuarios.add(Integer.parseInt(usuariosID[i].substring(1,
+							usuariosID[i].length())));
+			}
+			
+			int id = Integer.parseInt(atts.getValue("gid").substring(1,
+					atts.getValue("gid").length()));
+			
+			grupos.add(new Group(atts.getValue("nombre"), id, usuarios));
 			break;
 		}
 		
@@ -65,6 +79,7 @@ public class UserHandler extends DefaultHandler{
 	@Override
 	public void endDocument() throws SAXException{
 		System.out.println(usuarios);
+		System.out.println(grupos);
 	}
 	
 	public void removeUser(User user){
@@ -75,10 +90,14 @@ public class UserHandler extends DefaultHandler{
 			gruposSecundarios.get(i).removeUserFromGroup(user);
 		
 		usuarios.remove(user);
-		
 	}
 	
 	public void removeGroup(Group group){
+		assert group.erasable();
+		
+		for(User u : group.getUsuarios())
+			group.removeUserFromGroup(u);
+		
 		grupos.remove(group);
 	}
 

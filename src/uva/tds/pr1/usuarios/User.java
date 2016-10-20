@@ -46,6 +46,16 @@ public class User implements Serializable{
 		
 		return xmlStruct;
 	}
+	
+	public boolean appear(Group group){
+		return grupoSecundario.contains(group);
+	}
+	
+	public void removeGroupSecunday(Group group){
+		assert(appear(group));
+		grupoSecundarioID.remove(group.getgID());
+		grupoSecundario.remove(group);
+	}
 
 	public int getuId() {
 		return uId;
