@@ -9,7 +9,7 @@ public class Group implements Serializable{
 	private String nombre;
 	private int gID;
 	private ArrayList<Integer> idusuarios;
-	private ArrayList<User> usuarios;
+	private ArrayList<User> usuarios = new ArrayList<User>(0);
 	
 	public Group(String nombre, int gID,
 			ArrayList<Integer>idusuarios) {
@@ -64,6 +64,15 @@ public class Group implements Serializable{
 		}
 		return true;
 	}
+	
+	public void addUser(User user) {
+		assert(!usuarios.contains(user));
+		
+		usuarios.add(user);
+		if(!idusuarios.contains(user.getuId()))
+			idusuarios.add(user.getuId());
+	}
+	
 	public int getgID() {
 		return gID;
 	}

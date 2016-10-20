@@ -11,7 +11,7 @@ public class User implements Serializable{
 	private EnumShell shell;
 	private String nombreCompleto;
 	private Group grupoPrincipal;
-	private ArrayList<Group> grupoSecundario;
+	private ArrayList<Group> grupoSecundario = new ArrayList<Group>(0);
 	private int grupoPrincipalID;
 	private ArrayList<Integer> grupoSecundarioID;
 	
@@ -57,6 +57,22 @@ public class User implements Serializable{
 		grupoSecundario.remove(group);
 	}
 
+	public int getGrupoPrincipalID() {
+		return grupoPrincipalID;
+	}
+
+	public void setGrupoPrincipalID(int grupoPrincipalID) {
+		this.grupoPrincipalID = grupoPrincipalID;
+	}
+
+	public ArrayList<Integer> getGrupoSecundarioID() {
+		return grupoSecundarioID;
+	}
+
+	public void setGrupoSecundarioID(ArrayList<Integer> grupoSecundarioID) {
+		this.grupoSecundarioID = grupoSecundarioID;
+	}
+
 	public int getuId() {
 		return uId;
 	}
@@ -81,6 +97,12 @@ public class User implements Serializable{
 		this.grupoSecundario = grupoSecundario;
 	}
 	
-	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 }
