@@ -40,10 +40,7 @@ public class UserSystemImpl implements UserSystemInterface {
 	}
 
 	@Override
-	public void updateTo(Path pathToXML) {
-		// TODO Auto-generated method stub
-		
-		
+	public void updateTo(Path pathToXML) {		
 		isModify = false;
 	}
 
@@ -63,7 +60,6 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void createNewUser(String name, int uId, String password, Path pathToHome, String fullName, EnumShell shell,
 			Group mainGroup, Group[] secundaryGroups) {
-		// TODO Auto-generated method stub
 		
 		isModify = true;
 	}
@@ -106,10 +102,7 @@ public class UserSystemImpl implements UserSystemInterface {
 	}
 
 	@Override
-	public void addUserToGroup(User user, Group group) {
-		
-		// TODO Auto-generated method stub
-		
+	public void addUserToGroup(User user, Group group) {		
 		isModify = true;
 	}
 

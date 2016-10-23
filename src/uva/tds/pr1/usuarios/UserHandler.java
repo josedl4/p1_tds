@@ -3,6 +3,7 @@ package uva.tds.pr1.usuarios;
 import java.util.ArrayList;
 
 import javax.xml.ws.handler.Handler;
+import uva.tds.pr1.usuarios.*;
 
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -16,22 +17,6 @@ public class UserHandler extends DefaultHandler{
 		super();
 		usuarios = new ArrayList<User>();
 		grupos = new ArrayList<Group>();
-	}
-	
-	public ArrayList<User> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(ArrayList<User> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public ArrayList<Group> getGrupos() {
-		return grupos;
-	}
-
-	public void setGrupos(ArrayList<Group> grupos) {
-		this.grupos = grupos;
 	}
 
 	@Override
