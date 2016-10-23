@@ -47,6 +47,7 @@ public class User implements Serializable{
 		return xmlStruct;
 	}
 	
+<<<<<<< HEAD
 	public boolean appear(Group group){
 		return grupoSecundario.contains(group);
 	}

@@ -59,62 +59,56 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void createNewUser(String name, int uId, String password, Path pathToHome, String fullName, EnumShell shell,
 			Group mainGroup, Group[] secundaryGroups) {
-		
+
+		myHandler.createNewUser(name, uId, password, pathToHome, fullName, shell, mainGroup, secundaryGroups);
 		isModify = true;
 	}
 
 	@Override
 	public User getUserById(int uId) {
-		// TODO Auto-generated method stub
-		
 		isModify = true;
-		return null;
+		return myHandler.getUserById(uId);
 	}
 
 	@Override
 	public User getUserByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return myHandler.getUserByName(name);
 	}
 
 	@Override
 	public Group getGroupById(int gId) {
-		// TODO Auto-generated method stub
-		
 		isModify = true;
-		return null;
+		return myHandler.getGroupById(gId);
 	}
 
 	@Override
 	public Group getGroupByName(String name) {
-		// TODO Auto-generated method stub
-		
 		isModify = true;
-		return null;
+		return myHandler.getGroupByName(name);
 	}
 
 	@Override
 	public void createNewGroup(String name, int gId) {
-		// TODO Auto-generated method stub
-		
+		myHandler.createNewGroup(name, gId);
 		isModify = true;
 	}
 
 	@Override
-	public void addUserToGroup(User user, Group group) {		
+	public void addUserToGroup(User user, Group group) {
 		isModify = true;
+		myHandler.addUserToGroup(user, group);
+		
 	}
 
 	@Override
 	public void removeUserFromGroup(User user, Group group) {
-		
 		group.removeUserFromGroup(user);
 		isModify = true;
 	}
 
 	@Override
 	public void removeUserFromSystem(User user) {
-
 		myHandler.removeUser(user);
 		isModify = true;
 	}
@@ -124,6 +118,7 @@ public class UserSystemImpl implements UserSystemInterface {
 		assert(!group.getUsuarios().isEmpty());
 		myHandler.removeGroup(group);
 		isModify = true;
+		
 	}
 
 }

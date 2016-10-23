@@ -81,4 +81,15 @@ public class Group implements Serializable{
 		this.gID = gID;
 	}
 
+	public String getName(){
+		return nombre;	
+	}
+	
+	
+	public ArrayList<User> getUsuarios(){
+		return usuarios;
+	}
+	
+	}
+
 }
