@@ -14,6 +14,8 @@ public class UserSystemImpl implements UserSystemInterface {
 	private UserHandler myHandler;
 	private boolean isModify;
 	
+	static final Path PATH_DTD = new File("usuariosUnix.dtd").toPath();
+	
 	public UserSystemImpl() {super();}
 	
 	@Override
@@ -32,6 +34,8 @@ public class UserSystemImpl implements UserSystemInterface {
 			myXML.setContentHandler(handler);
 			myXML.parse(source);
 			
+			myHandler = handler;
+			
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -40,7 +44,14 @@ public class UserSystemImpl implements UserSystemInterface {
 	}
 
 	@Override
-	public void updateTo(Path pathToXML) {		
+	public void updateTo(Path pathToXML) {
+		try{
+			System.out.println("p2");
+			myHandler.updateTo(pathToXML, PATH_DTD);
+		}catch (Exception e) {
+			System.err.println(e);
+			assert false;
+		}
 		isModify = false;
 	}
 

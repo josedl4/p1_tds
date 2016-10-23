@@ -11,12 +11,18 @@ public class Group implements Serializable{
 	private ArrayList<Integer> idusuarios;
 	private ArrayList<User> usuarios = new ArrayList<User>(0);
 	
-	public Group(String nombre, int gID,
-			ArrayList<Integer>idusuarios) {
+	protected Group(String nombre, int gID,
+			ArrayList<Integer> idusuarios) {
 		this.nombre = nombre;
 		this.gID = gID;
 		this.idusuarios = idusuarios;
 	}
+	
+	/*public Group(String nombre, int gID, ArrayList<User> usuarios) {
+		this.nombre = nombre;
+		this.gID = gID;
+		this.usuarios = usuarios;
+	}*/
 	
 	@Override
 	public String toString(){
@@ -45,12 +51,7 @@ public class Group implements Serializable{
 	
 	public void removeUserFromGroup(User user){
 		assert(!appear(user));
-		idusuarios.remove(user.getuId());
 		usuarios.remove(user);
-	}
-
-	public ArrayList<User> getUsuarios() {
-		return usuarios;
 	}
 
 	public void setUsuarios(ArrayList<User> usuarios) {
@@ -67,10 +68,7 @@ public class Group implements Serializable{
 	
 	public void addUser(User user) {
 		assert(!usuarios.contains(user));
-		
 		usuarios.add(user);
-		if(!idusuarios.contains(user.getuId()))
-			idusuarios.add(user.getuId());
 	}
 	
 	public int getgID() {
@@ -81,15 +79,13 @@ public class Group implements Serializable{
 		this.gID = gID;
 	}
 
-	public String getName(){
+	public String getNombre(){
 		return nombre;	
 	}
 	
 	
 	public ArrayList<User> getUsuarios(){
 		return usuarios;
-	}
-	
 	}
 
 }

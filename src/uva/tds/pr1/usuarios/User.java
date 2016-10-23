@@ -46,15 +46,13 @@ public class User implements Serializable{
 		
 		return xmlStruct;
 	}
-	
-<<<<<<< HEAD
+
 	public boolean appear(Group group){
 		return grupoSecundario.contains(group);
 	}
 	
 	public void removeGroupSecunday(Group group){
 		assert(appear(group));
-		grupoSecundarioID.remove(group.getgID());
 		grupoSecundario.remove(group);
 	}
 
@@ -104,6 +102,22 @@ public class User implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public String getDirectorio() {
+		return directorio;
+	}
+
+	public EnumShell getShell() {
+		return shell;
+	}
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
 	
 }
