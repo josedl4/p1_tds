@@ -53,7 +53,6 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public boolean isModifiedAfterLoaded() {
-		
 		return isModify;
 	}
 
