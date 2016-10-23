@@ -95,7 +95,7 @@ public class UserHandler extends DefaultHandler{
 	}
 	
 	public void addUserToGroup(User user, Group group){
-		group.add(user);
+		group.addUser(user);
 	}
 	
 
