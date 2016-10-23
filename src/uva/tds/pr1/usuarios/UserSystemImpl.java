@@ -60,32 +60,35 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void createNewUser(String name, int uId, String password, Path pathToHome, String fullName, EnumShell shell,
 			Group mainGroup, Group[] secundaryGroups) {
+
 		// TODO Auto-generated method stub
+		myHandler.createNewUser(name, uId, password, pathToHome, fullName, shell, mainGroup, secundaryGroups);
 		
 	}
 
 	@Override
 	public User getUserById(int uId) {
 		// TODO Auto-generated method stub
-		return null;
+		return myHandler.getUserById(uId);
 	}
 
 	@Override
 	public User getUserByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return myHandler.getUserByName(name);
 	}
 
 	@Override
 	public Group getGroupById(int gId) {
 		// TODO Auto-generated method stub
-		return null;
+		return myHandler.getGroupById(gId);
 	}
 
 	@Override
 	public Group getGroupByName(String name) {
+		return myHandler.getGroupByName(name);
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
@@ -96,7 +99,6 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public void addUserToGroup(User user, Group group) {
-		
 		// TODO Auto-generated method stub
 		
 	}

@@ -47,4 +47,13 @@ public class User implements Serializable{
 		return xmlStruct;
 	}
 	
+	public String getName(){
+		return nombre;	
+		
+	}
+	
+	public int getuID(){
+		return uId;
+	}
+	
 }

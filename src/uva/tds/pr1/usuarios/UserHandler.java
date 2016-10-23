@@ -1,5 +1,6 @@
 package uva.tds.pr1.usuarios;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.xml.ws.handler.Handler;
@@ -37,6 +38,58 @@ public class UserHandler extends DefaultHandler{
 	public void setGrupos(ArrayList<Group> grupos) {
 		this.grupos = grupos;
 	}
+	
+	public User getUserByName(String name){
+		for (int i=0; i<usuarios.size(); i++)
+			if(usuarios.get(i).getName().equals(name)){
+				return usuarios.get(i);
+			}
+		assert false;
+		return null;			
+	}
+	
+	public User getUserById(int uId){
+		for (int i=0; i<usuarios.size(); i++)
+			if(usuarios.get(i).getuID()== uId){
+				return usuarios.get(i);
+			}
+		assert false;
+		return null;				
+	}
+	
+	public Group getGroupByName(String name){
+		for (int i=0; i<grupos.size(); i++)
+			if(grupos.get(i).getName().equals(name)){
+				return grupos.get(i);
+			}
+		assert false;
+		return null;				
+	}
+	
+	public Group getGroupById(int gId){
+		for (int i=0; i<grupos.size(); i++)
+			if(grupos.get(i).getgID()==gId){
+				return grupos.get(i);
+			}
+		assert false;
+		return null;			
+			
+	}
+	
+	public void createNewUser(String name, int uId, String password, Path pathToHome, String fullName, EnumShell shell,
+			Group mainGroup, Group[] secundaryGroups){
+		ArrayList<Integer> secundaryGroupsAL = new ArrayList<Integer>();
+		for(int i = 0; i<secundaryGroups.length; i++){
+			secundaryGroupsAL.add(secundaryGroups[i].getgID());
+		}
+		
+		String pathToHomeSt = pathToHome.toString();
+		int mainGroupID =  mainGroup.getgID();
+		User user = new User(name, password,pathToHomeSt, uId, shell, fullName, mainGroupID, secundaryGroupsAL);
+		
+	}
+	
+	
 
 
 	@Override

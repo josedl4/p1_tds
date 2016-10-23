@@ -36,12 +36,22 @@ public class Group implements Serializable{
 		
 		return xmlStruct;
 	}
+	
+	public String getName(){
+		return nombre;	
+		
+	}
+	
+	public int getgID(){
+		return gID;
+	}
+	
+	
 	public ArrayList<User> getUsuarios(){
 		return usuarios;
 	}
 	
-	public boolean estaONo(User user){
-		
+	public boolean estaONo(User user){		
 		return true;
 	}
 
