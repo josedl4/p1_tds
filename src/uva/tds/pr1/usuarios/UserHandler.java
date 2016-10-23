@@ -73,6 +73,20 @@ public class UserHandler extends DefaultHandler{
 			break;
 
 		case "Group":
+			ArrayList<Integer> usuarios = new ArrayList<Integer>(0);
+			
+			if(atts.getValue("idusuarios") != null){
+				String[] usuariosID = atts.getValue("idusuarios").split(" ");
+				
+				for(int i = 0; i < usuariosID.length; i++)
+					usuarios.add(Integer.parseInt(usuariosID[i].substring(1,
+							usuariosID[i].length())));
+			}
+			
+			int id = Integer.parseInt(atts.getValue("gid").substring(1,
+					atts.getValue("gid").length()));
+			
+			grupos.add(new Group(atts.getValue("nombre"), id, usuarios));
 			break;
 		}
 		
@@ -81,5 +95,73 @@ public class UserHandler extends DefaultHandler{
 	@Override
 	public void endDocument() throws SAXException{
 		System.out.println(usuarios);
+		System.out.println(grupos);
+		
+		for(int i = 0; i < usuarios.size(); i++){
+			User u = usuarios.get(i);
+			
+			for(int j = 0; j < grupos.size(); j++){
+				Group g = grupos.get(j);
+				
+				if(u.getGrupoPrincipalID() == g.getgID()){
+					g.addUser(u);
+					u.setGrupoPrincipal(g);
+				}
+			}
+			
+			for(int j = 0; j < u.getGrupoSecundarioID().size(); j++){
+				int gidSec = u.getGrupoSecundarioID().get(j);
+				
+				for(int k = 0; k < grupos.size(); k++){
+					Group g = grupos.get(k);
+					
+					if(gidSec == g.getgID())
+						g.addUser(u);
+						u.getGrupoSecundario().add(g);
+				}
+			}
+		}
+		
+		
+		for(Group g : grupos) {
+			System.out.println(g.toString());
+			for(User u : g.getUsuarios())
+				System.out.println(u.getNombre());
+		}
+	}
+	
+	public void removeUser(User user){
+		user.getGrupoPrincipal().removeUserFromGroup(user);
+		ArrayList<Group> gruposSecundarios = user.getGrupoSecundario();
+		
+		for(int i = 0; i < gruposSecundarios.size(); i++)
+			gruposSecundarios.get(i).removeUserFromGroup(user);
+		
+		usuarios.remove(user);
+	}
+	
+	public void removeGroup(Group group){
+		assert group.erasable();
+		
+		for(User u : group.getUsuarios())
+			group.removeUserFromGroup(u);
+		
+		grupos.remove(group);
+	}
+
+	public ArrayList<User> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(ArrayList<User> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public ArrayList<Group> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(ArrayList<Group> grupos) {
+		this.grupos = grupos;
 	}
 }

@@ -12,6 +12,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 
 public class UserSystemImpl implements UserSystemInterface {
 	private UserHandler myHandler;
+	private boolean isModify;
 	
 	public UserSystemImpl() {super();}
 	
@@ -35,12 +36,15 @@ public class UserSystemImpl implements UserSystemInterface {
 			System.err.println(e);
 		}
 		
+		isModify = false;
 	}
 
 	@Override
 	public void updateTo(Path pathToXML) {
 		// TODO Auto-generated method stub
 		
+		
+		isModify = false;
 	}
 
 	@Override
@@ -52,8 +56,8 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public boolean isModifiedAfterLoaded() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return isModify;
 	}
 
 	@Override
@@ -61,11 +65,14 @@ public class UserSystemImpl implements UserSystemInterface {
 			Group mainGroup, Group[] secundaryGroups) {
 		// TODO Auto-generated method stub
 		
+		isModify = true;
 	}
 
 	@Override
 	public User getUserById(int uId) {
 		// TODO Auto-generated method stub
+		
+		isModify = true;
 		return null;
 	}
 
@@ -78,12 +85,16 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public Group getGroupById(int gId) {
 		// TODO Auto-generated method stub
+		
+		isModify = true;
 		return null;
 	}
 
 	@Override
 	public Group getGroupByName(String name) {
 		// TODO Auto-generated method stub
+		
+		isModify = true;
 		return null;
 	}
 
@@ -91,6 +102,7 @@ public class UserSystemImpl implements UserSystemInterface {
 	public void createNewGroup(String name, int gId) {
 		// TODO Auto-generated method stub
 		
+		isModify = true;
 	}
 
 	@Override
@@ -98,26 +110,28 @@ public class UserSystemImpl implements UserSystemInterface {
 		
 		// TODO Auto-generated method stub
 		
+		isModify = true;
 	}
 
 	@Override
 	public void removeUserFromGroup(User user, Group group) {
-		// TODO Auto-generated method stub
 		
+		group.removeUserFromGroup(user);
+		isModify = true;
 	}
 
 	@Override
 	public void removeUserFromSystem(User user) {
-		// TODO Auto-generated method stub
-		ArrayList<Group> misGrupos = myHandler.getGrupos();
-		
+
+		myHandler.removeUser(user);
+		isModify = true;
 	}
 
 	@Override
 	public void removeGroupFromSystem(Group group) {
 		assert(!group.getUsuarios().isEmpty());
-		myHandler.getGrupos().remove(group);
-		
+		myHandler.removeGroup(group);
+		isModify = true;
 	}
 
 }
