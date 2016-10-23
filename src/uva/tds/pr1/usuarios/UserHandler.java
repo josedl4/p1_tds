@@ -89,6 +89,14 @@ public class UserHandler extends DefaultHandler{
 		
 	}
 	
+	public void createNewGroup(String name, int gId){
+		ArrayList<Integer> idusuarios = new ArrayList<Integer>();
+		Group group = new Group(name, gId, idusuarios);
+	}
+	
+	public void addUserToGroup(User user, Group group){
+		group.add(user);
+	}
 	
 
 

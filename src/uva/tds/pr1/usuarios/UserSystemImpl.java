@@ -94,11 +94,13 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void createNewGroup(String name, int gId) {
 		// TODO Auto-generated method stub
+		myHandler.createNewGroup(name, gId);
 		
 	}
 
 	@Override
 	public void addUserToGroup(User user, Group group) {
+		myHandler.addUserToGroup(user, group);
 		// TODO Auto-generated method stub
 		
 	}
