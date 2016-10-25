@@ -84,6 +84,7 @@ public class UserHandler extends DefaultHandler{
 	public void createNewGroup(String name, int gId){
 		ArrayList<Integer> idusuarios = new ArrayList<Integer>();
 		Group group = new Group(name, gId, idusuarios);
+		grupos.add(group);
 	}
 	
 	public void addUserToGroup(User user, Group group){
@@ -151,7 +152,6 @@ public class UserHandler extends DefaultHandler{
 	
 	@Override
 	public void endDocument() throws SAXException{
-		
 		for(int i = 0; i < usuarios.size(); i++){
 			User u = usuarios.get(i);
 			
@@ -170,16 +170,16 @@ public class UserHandler extends DefaultHandler{
 				for(int k = 0; k < grupos.size(); k++){
 					Group g = grupos.get(k);
 					
-					if(gidSec == g.getgID())
+					if(gidSec == g.getgID()){
 						g.addUser(u);
 						u.getGrupoSecundario().add(g);
+					}
 				}
 			}
 		}
 	}
 	
 	public void updateTo(Path file, Path dtd) throws Exception{
-		System.out.println("p3");
 		
 		StringWriter sw = new StringWriter();
 		XMLOutputFactory xof = XMLOutputFactory.newInstance();

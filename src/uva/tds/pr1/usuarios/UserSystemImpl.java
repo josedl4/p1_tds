@@ -46,7 +46,6 @@ public class UserSystemImpl implements UserSystemInterface {
 	@Override
 	public void updateTo(Path pathToXML) {
 		try{
-			System.out.println("p2");
 			myHandler.updateTo(pathToXML, PATH_DTD);
 		}catch (Exception e) {
 			System.err.println(e);
