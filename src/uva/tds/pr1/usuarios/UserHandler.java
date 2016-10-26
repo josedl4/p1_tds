@@ -137,6 +137,11 @@ public class UserHandler extends DefaultHandler{
 	}
 	///
 
+	// Modificar Atributos
+	
+	///
+	
+	// updateTo
 	public void updateTo(Path file, Path dtd) throws Exception{
 		
 		StringWriter sw = new StringWriter();
@@ -233,6 +238,11 @@ public class UserHandler extends DefaultHandler{
 					atts.getValue("nombreCompleto"), gID,
 					grupoSecundarioID, this);
 			
+			for(User u : usuarios){
+				if(u.getNombre().equals(atts.getValue("nombre")))
+						throw new SAXException("Nombre usuario repetido");
+			}
+			
 			usuarios.add(user);
 			
 			break;
@@ -246,6 +256,11 @@ public class UserHandler extends DefaultHandler{
 				for(int i = 0; i < usuariosID.length; i++)
 					usuarios.add(Integer.parseInt(usuariosID[i].substring(1,
 							usuariosID[i].length())));
+			}
+			
+			for(Group g : grupos){
+				if(g.getNombre().equals(atts.getValue("nombre")))
+						throw new SAXException("Nombre grupo repetido");
 			}
 			
 			int id = Integer.parseInt(atts.getValue("gid").substring(1,

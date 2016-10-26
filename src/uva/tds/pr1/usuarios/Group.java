@@ -70,6 +70,7 @@ public class Group implements Serializable{
 	
 	public void addUser(User user) {
 		assert(!usuarios.contains(user));
+		user.addGrupoSecundario(this);
 		usuarios.add(user);
 	}
 	

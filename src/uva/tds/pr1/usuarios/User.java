@@ -58,6 +58,10 @@ public class User implements Serializable{
 		assert(appear(group));
 		grupoSecundario.remove(group);
 	}
+	
+	protected void addGrupoSecundario(Group group){
+		grupoSecundario.add(group);
+	}
 
 	public int getGrupoPrincipalID() {
 		return grupoPrincipalID;
