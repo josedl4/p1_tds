@@ -5,8 +5,12 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 
@@ -20,24 +24,24 @@ public class UserSystemImpl implements UserSystemInterface {
 	
 	@Override
 	public void loadFrom(Path pathToXML) {
-		FileReader input;
-		InputSource source;
-		XMLReader myXML;
 		
 		try{
-			input = new FileReader(pathToXML.toFile());
-			source = new InputSource(input);
-			myXML = XMLReaderFactory.createXMLReader();
+			SAXParserFactory factory = SAXParserFactory.newInstance();
 			
-			UserHandler handler = new UserHandler();
+			factory.setValidating(true);
+			factory.setNamespaceAware(true);;
 			
-			myXML.setContentHandler(handler);
-			myXML.parse(source);
+			SAXParser parser = factory.newSAXParser();
 			
-			myHandler = handler;
+			DefaultHandler handler = new UserHandler();
+			XMLReader reader = parser.getXMLReader();
+			//reader.parse(new InputSource(pathToXML.toString()));
+			parser.parse(new InputSource(pathToXML.toString()), handler);
+			
+			myHandler = (UserHandler) handler;
 			
 		} catch (Exception e) {
-			System.err.println(e);
+			throw new IllegalArgumentException(e.getMessage());
 		}
 		
 		isModify = false;
@@ -48,8 +52,7 @@ public class UserSystemImpl implements UserSystemInterface {
 		try{
 			myHandler.updateTo(pathToXML, PATH_DTD);
 		}catch (Exception e) {
-			System.err.println(e);
-			assert false;
+			throw new IllegalArgumentException(e.getMessage());
 		}
 		isModify = false;
 	}
@@ -82,7 +85,7 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public User getUserByName(String name) {
-		// TODO Auto-generated method stub
+		isModify = true;
 		return myHandler.getUserByName(name);
 	}
 

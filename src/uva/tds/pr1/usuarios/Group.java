@@ -10,19 +10,15 @@ public class Group implements Serializable{
 	private int gID;
 	private ArrayList<Integer> idusuarios;
 	private ArrayList<User> usuarios = new ArrayList<User>(0);
-	
+	private UserHandler mySystem;
+		
 	protected Group(String nombre, int gID,
-			ArrayList<Integer> idusuarios) {
+			ArrayList<Integer> idusuarios, UserHandler mySystem) {
 		this.nombre = nombre;
 		this.gID = gID;
 		this.idusuarios = idusuarios;
+		this.mySystem = mySystem;
 	}
-	
-	/*public Group(String nombre, int gID, ArrayList<User> usuarios) {
-		this.nombre = nombre;
-		this.gID = gID;
-		this.usuarios = usuarios;
-	}*/
 	
 	@Override
 	public String toString(){
@@ -50,6 +46,12 @@ public class Group implements Serializable{
 	}
 	
 	public void removeUserFromGroup(User user){
+		assert(!appear(user));
+		user.removeGroupSecunday(this);
+		usuarios.remove(user);
+	}
+	
+	public void removeUserFromSystem(User user){
 		assert(!appear(user));
 		usuarios.remove(user);
 	}

@@ -11,5 +11,5 @@
     <Group nombre="grupo2" idusuarios=" u2 u4 u6" gid="g2"/>
     <Group nombre="grupo3" gid="g3"/>
     <Group nombre="grupo4" idusuarios=" u1 u2" gid="g4"/>
-    <Group nombre="ElMejorGrupo" gid="g1000"/>
+    <Group nombre="ElMejorGrupo" idusuarios=" u1" gid="g1000"/>
 </System>

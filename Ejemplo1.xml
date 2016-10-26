@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE usuarios SYSTEM "usuariosUnix.dtd" >
+<!DOCTYPE System SYSTEM "usuariosUnix.dtd" >
 <System>
   <User nombre='user1' passwd="cotraseña" directorio="HOME" uid="u01" grupoPrincipal="g01" grupoSecundario="g04"/>
   <User nombre="user2" passwd="cotraseña" directorio="HOME" uid="u02" grupoPrincipal="g02" grupoSecundario="g04"/>

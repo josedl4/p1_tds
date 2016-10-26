@@ -3,7 +3,7 @@
 <!ELEMENT System (User*, Group*)>
 
 <!-- Usuario -->
-<!ELEMENT Usuario EMPTY>
+<!ELEMENT User EMPTY>
 
 <!ATTLIST User nombre CDATA #REQUIRED>
 <!ATTLIST User passwd CDATA #REQUIRED> 
@@ -16,6 +16,7 @@
 
 <!-- Grupo -->
 <!ELEMENT Group EMPTY>
+
 <!ATTLIST Group nombre CDATA #REQUIRED>
 <!ATTLIST Group idusuarios IDREFS #IMPLIED>
 <!ATTLIST Group gid ID #REQUIRED>

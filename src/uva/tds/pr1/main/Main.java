@@ -6,7 +6,7 @@ import uva.tds.pr1.usuarios.*;
 public class Main {
 
 	public static void main(String[] args) {
-		UserSystemImpl us = new UserSystemImpl();
+		UserSystemInterface us = new UserSystemImpl();
 		File file = new File("Ejemplo1.xml");
 		File file2 = new File("Prueba.xml");
 		
@@ -16,6 +16,7 @@ public class Main {
 		
 		us.createNewGroup("ElMejorGrupo", 1000);
 		Group g = us.getGroupById(1000);
+		us.addUserToGroup(u, g);
 		
 		System.out.println(g);
 		

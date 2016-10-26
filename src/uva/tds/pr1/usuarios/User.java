@@ -14,9 +14,11 @@ public class User implements Serializable{
 	private ArrayList<Group> grupoSecundario = new ArrayList<Group>(0);
 	private int grupoPrincipalID;
 	private ArrayList<Integer> grupoSecundarioID;
+	private UserHandler mySystem;
 	
-	public User(String nombre, String passwd, String directorio, int uId, EnumShell shell,
-			String nombreCompleto, int grupoPrincipalID, ArrayList<Integer> grupoSecundarioID){
+	protected User(String nombre, String passwd, String directorio, int uId, EnumShell shell,
+			String nombreCompleto, int grupoPrincipalID, ArrayList<Integer> grupoSecundarioID,
+			UserHandler mySystem){
 		this.nombre = nombre;
 		this.passwd = passwd;
 		this.directorio = directorio;
@@ -25,6 +27,7 @@ public class User implements Serializable{
 		this.nombreCompleto = nombreCompleto;
 		this.grupoPrincipalID = grupoPrincipalID;
 		this.grupoSecundarioID = grupoSecundarioID;
+		this.mySystem = mySystem;
 	}
 	
 	public String toString() {
