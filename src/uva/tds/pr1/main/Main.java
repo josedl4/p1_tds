@@ -3,6 +3,13 @@ package uva.tds.pr1.main;
 import java.io.File;
 import uva.tds.pr1.usuarios.*;
 
+/**
+ * Nuestra clase Main para cargar un archivo xml que almacenará la información de usuarios 
+ * del sistema según una DTD definida. 
+ * Hace uso de los servicios de la implementación y pruebas
+ * @author Jose Luis Martín Martín
+ * @author Juan Carlos Blázquez Muñoz
+ */
 public class Main {
 
 	public static void main(String[] args) {

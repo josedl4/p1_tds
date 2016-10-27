@@ -21,6 +21,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * Implementación de un manejador para el parser SAX
+ * @author Jose Luis Martín Martín
+ * @author Juan Carlos Blázquez Muñoz
+ */
 public class UserHandler extends DefaultHandler{
 	private ArrayList<User> usuarios;
 	private ArrayList<Group> grupos;
