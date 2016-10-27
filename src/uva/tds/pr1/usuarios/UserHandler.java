@@ -100,7 +100,6 @@ public class UserHandler extends DefaultHandler{
 		
 		user.setGrupoSecundario(secundaryGroupsAL);
 		mainGroup.addUser(user);
-		System.out.println(user.getGrupoSecundario());
 		usuarios.add(user);
 	}
 	
