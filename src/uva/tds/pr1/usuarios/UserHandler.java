@@ -33,10 +33,11 @@ public class UserHandler extends DefaultHandler{
 
 	// Getters de Usuarios y Grupos
 	public User getUserByName(String name){
-		for (int i=0; i<usuarios.size(); i++)
-			if(usuarios.get(i).getNombre().equals(name)){
-				return usuarios.get(i);
+		for (User u : usuarios){
+			if(u.getNombre().equals(name)){
+				return u;
 			}
+		}
 		throw new IllegalArgumentException("No se encontro un usuario con ese nombre!!!");
 	}
 	
@@ -77,20 +78,29 @@ public class UserHandler extends DefaultHandler{
 		String pathToHomeSt = pathToHome.toString();
 		
 		User user = new User(name, password,pathToHomeSt, uId, shell, fullName, 
-				mainGroup.getgID(), null, this);
-		
-		user.setGrupoPrincipal(mainGroup);
+				mainGroup.getgID(), new ArrayList<Integer>(), this);
+
 		
 		ArrayList<Group> secundaryGroupsAL = new ArrayList<Group>();
 		
+		if(!grupos.contains(mainGroup))
+			throw new IllegalArgumentException("El grupo principal no se encuentra en el sistema");
+		user.setGrupoPrincipal(mainGroup);
+		
 		for(Group g : secundaryGroups){
 			if(g.equals(mainGroup))
-				throw new IllegalArgumentException("El grupo principal esta en la lista de grupos secundarios");
+				throw new IllegalArgumentException("El grupo principal, con ID g"+ g.getgID() +", esta en la lista de grupos secundarios");
+			if(!grupos.contains(g))
+				throw new IllegalArgumentException("El grupo secundario, con ID g"+ g.getgID() +", no se encuentra en el sistema");
+			if(secundaryGroupsAL.contains(g))
+				throw new IllegalArgumentException("El grupo secundario, con ID g"+ g.getgID() +", del usuario a crear esta repetido");
+			g.addUser(user);
 			secundaryGroupsAL.add(g);
 		}
 		
 		user.setGrupoSecundario(secundaryGroupsAL);
-		
+		mainGroup.addUser(user);
+		System.out.println(user.getGrupoSecundario());
 		usuarios.add(user);
 	}
 	
@@ -113,6 +123,7 @@ public class UserHandler extends DefaultHandler{
 				throw new IllegalArgumentException("El usuario ya pertenece a este grupo");
 		}
 		group.addUser(user);
+		user.addGrupoSecundario(group);
 	}
 	///
 
@@ -130,8 +141,7 @@ public class UserHandler extends DefaultHandler{
 	public void removeGroup(Group group){
 		assert group.erasable();
 		
-		for(User u : group.getUsuarios())
-			group.removeUserFromGroup(u);
+		group.removeAllUsers();
 		
 		grupos.remove(group);
 	}
@@ -141,7 +151,7 @@ public class UserHandler extends DefaultHandler{
 	
 	///
 	
-	// updateTo
+	// updateTo		//Hecho, no tocar
 	public void updateTo(Path file, Path dtd) throws Exception{
 		
 		StringWriter sw = new StringWriter();
@@ -204,6 +214,7 @@ public class UserHandler extends DefaultHandler{
 				new StreamResult(new FileOutputStream(file.toString(),false)));
 	}
 	
+	//Hecho, no tocar
 	@Override
 	public void startElement(String uri, String localName, String qName, org.xml.sax.Attributes atts)
 			throws SAXException {
@@ -273,34 +284,28 @@ public class UserHandler extends DefaultHandler{
 	}
 	
 	@Override
-	public void endDocument() throws SAXException{
-		for(int i = 0; i < usuarios.size(); i++){
-			User u = usuarios.get(i);
+	public void endDocument() throws SAXException{			//hecho no tocar
+		for(User u : usuarios){
 			
-			for(int j = 0; j < grupos.size(); j++){
-				Group g = grupos.get(j);
-				
+			for(Group g : grupos){
+				//System.out.println(u + " " + g);
 				if(u.getGrupoPrincipalID() == g.getgID()){
-					g.addUser(u);
 					u.setGrupoPrincipal(g);
+					g.addUser(u);
+				}else{
+				
+					if(u.getGrupoSecundarioID().contains(g.getgID())){
+						u.getGrupoSecundario().add(g);
+						g.addUser(u);
+					}
+			
 				}
 			}
 			
-			for(int j = 0; j < u.getGrupoSecundarioID().size(); j++){
-				int gidSec = u.getGrupoSecundarioID().get(j);
-				
-				for(int k = 0; k < grupos.size(); k++){
-					Group g = grupos.get(k);
-					
-					if(gidSec == g.getgID()){
-						g.addUser(u);
-						u.getGrupoSecundario().add(g);
-					}
-				}
-			}
 		}
 	}
 	
+	//Hecho no tocar
 	public void warning(SAXParseException e) throws SAXException {
 		 System.err.println("Warning: " + e.getMessage());
 		 throw new SAXException("Parsing Warning");
@@ -316,4 +321,49 @@ public class UserHandler extends DefaultHandler{
 		 System.err.println("Faltal error:" + e.getMessage());
 		 throw new SAXException("Parsing fatal error");
 	 }
+
+	protected void changeGID(int gid, Group group) {
+		assert(grupos.contains(group));
+		for(Group g : grupos){
+			if(gid == g.getgID())
+				throw new IllegalArgumentException("El GID introducido esta en uso o es el mismo!!!");
+		}
+		group.setgID(gid);
+	}
+
+	protected void changeGroupName(String nombre, Group group) {
+		assert(grupos.contains(group));
+		for(Group g : grupos){
+			if(g.getNombre().equals(nombre))
+				throw new IllegalArgumentException("El nombre introducido esta en uso o es el mismo!!!");
+		}
+		group.setNombre(nombre);
+	}
+
+	protected void changeUserName(String nombre, User user) {
+		assert(usuarios.contains(user));
+		for(User u : usuarios){
+			if(u.getNombre().equals(nombre))
+				throw new IllegalArgumentException("El nombre introducido esta en uso o es el mismo!!!");
+		}
+		user.setNombre(nombre);
+	}
+
+	protected void setUserID(int uid, User user) {
+		assert(usuarios.contains(user));
+		for(User u : usuarios){
+			if(uid == u.getuId())
+				throw new IllegalArgumentException("El UID introducido esta en uso o es el mismo!!!");
+		}
+		user.setuId(uid);
+	}
+
+	protected void setNewGrupoPrincipal(Group group, User user) {
+		assert(usuarios.contains(group));
+		if(user.getGrupoSecundario().contains(group))
+			throw new IllegalArgumentException("El grupo " + group.getNombre() +
+					" es uno de los grupos secundarios y no puede ser añadido como grupo principal");
+		user.getGrupoPrincipal().removeUserFromGroup(user);
+		user.setGrupoPrincipal(group);
+	}
 }

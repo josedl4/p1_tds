@@ -30,15 +30,16 @@ public class User implements Serializable{
 		this.mySystem = mySystem;
 	}
 	
+	@Override
 	public String toString() {
 		String xmlStruct = "";
-		if(grupoSecundarioID.size() != 0){
+		if(grupoSecundario.size() != 0){
 			xmlStruct = "<User nombre='" + nombre + "' passwd='" + passwd +
 					"' directorio='" + directorio + "' uid='u" + uId + "' grupoPrincipal='g" 
 					+ grupoPrincipalID + "' grupoSecundario='";
 			
-			for(int n : grupoSecundarioID)
-				xmlStruct += " g" + n;
+			for(Group g : grupoSecundario)
+				xmlStruct += " g" + g.getgID();
 			
 			xmlStruct += "'/>";
 		} else {
@@ -50,11 +51,13 @@ public class User implements Serializable{
 		return xmlStruct;
 	}
 
-	public boolean appear(Group group){
+	// Hecho - no tocar
+	protected boolean appear(Group group){
 		return grupoSecundario.contains(group);
 	}
 	
-	public void removeGroupSecunday(Group group){
+	// Hecho - no tocar
+	protected void removeGroupSecunday(Group group){
 		assert(appear(group));
 		grupoSecundario.remove(group);
 	}
@@ -67,15 +70,20 @@ public class User implements Serializable{
 		return grupoPrincipalID;
 	}
 
-	public void setGrupoPrincipalID(int grupoPrincipalID) {
+	protected void setGrupoPrincipalID(int grupoPrincipalID) {
 		this.grupoPrincipalID = grupoPrincipalID;
 	}
+	
+	// Implementar en el Handler para que pueda ser usado por el cliente
+	public void setNewGrupoPrincipal(Group group){
+		mySystem.setNewGrupoPrincipal(group, this);
+	}
 
-	public ArrayList<Integer> getGrupoSecundarioID() {
+	protected ArrayList<Integer> getGrupoSecundarioID() {
 		return grupoSecundarioID;
 	}
 
-	public void setGrupoSecundarioID(ArrayList<Integer> grupoSecundarioID) {
+	protected void setGrupoSecundarioID(ArrayList<Integer> grupoSecundarioID) {
 		this.grupoSecundarioID = grupoSecundarioID;
 	}
 
@@ -83,23 +91,27 @@ public class User implements Serializable{
 		return uId;
 	}
 
-	public void setuId(int uId) {
+	protected void setuId(int uId) {
 		this.uId = uId;
 	}
+	
+	public void setUserID(int uid){
+		mySystem.setUserID(uid, this);
+	}
 
-	public Group getGrupoPrincipal() {
+	protected Group getGrupoPrincipal() {
 		return grupoPrincipal;
 	}
 
-	public void setGrupoPrincipal(Group grupoPrincipal) {
+	protected void setGrupoPrincipal(Group grupoPrincipal) {
 		this.grupoPrincipal = grupoPrincipal;
 	}
 
-	public ArrayList<Group> getGrupoSecundario() {
+	protected ArrayList<Group> getGrupoSecundario() {
 		return grupoSecundario;
 	}
 
-	public void setGrupoSecundario(ArrayList<Group> grupoSecundario) {
+	protected void setGrupoSecundario(ArrayList<Group> grupoSecundario) {
 		this.grupoSecundario = grupoSecundario;
 	}
 	
@@ -107,24 +119,44 @@ public class User implements Serializable{
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	protected void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void changeNombre(String nombre) {
+		mySystem.changeUserName(nombre, this);
 	}
 
 	public String getPasswd() {
 		return passwd;
 	}
 
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
 	public String getDirectorio() {
 		return directorio;
+	}
+
+	public void setDirectorio(String directorio) {
+		this.directorio = directorio;
 	}
 
 	public EnumShell getShell() {
 		return shell;
 	}
 
+	public void setShell(EnumShell shell) {
+		this.shell = shell;
+	}
+
 	public String getNombreCompleto() {
 		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 	
 }

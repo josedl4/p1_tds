@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE usuarios SYSTEM "usuariosUnix2.dtd" >
-<System>
-	<User nombre="J" passwd="cotraseña" directorio="HOME" uid="u01"/>
-</System>

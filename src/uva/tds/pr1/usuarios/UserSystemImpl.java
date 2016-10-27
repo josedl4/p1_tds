@@ -55,6 +55,7 @@ public class UserSystemImpl implements UserSystemInterface {
 			throw new IllegalArgumentException(e.getMessage());
 		}
 		isModify = false;
+		myHandler = null;
 	}
 
 	@Override
@@ -66,49 +67,56 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public boolean isModifiedAfterLoaded() {
+		assert(isXMLLoaded());
 		return isModify;
 	}
 
 	@Override
 	public void createNewUser(String name, int uId, String password, Path pathToHome, String fullName, EnumShell shell,
 			Group mainGroup, Group[] secundaryGroups) {
-
+		assert(isXMLLoaded());
 		myHandler.createNewUser(name, uId, password, pathToHome, fullName, shell, mainGroup, secundaryGroups);
 		isModify = true;
 	}
 
 	@Override
 	public User getUserById(int uId) {
+		assert(isXMLLoaded());
 		isModify = true;
 		return myHandler.getUserById(uId);
 	}
 
 	@Override
 	public User getUserByName(String name) {
+		assert(isXMLLoaded());
 		isModify = true;
 		return myHandler.getUserByName(name);
 	}
 
 	@Override
 	public Group getGroupById(int gId) {
+		assert(isXMLLoaded());
 		isModify = true;
 		return myHandler.getGroupById(gId);
 	}
 
 	@Override
 	public Group getGroupByName(String name) {
+		assert(isXMLLoaded());
 		isModify = true;
 		return myHandler.getGroupByName(name);
 	}
 
 	@Override
 	public void createNewGroup(String name, int gId) {
+		assert(isXMLLoaded());
 		myHandler.createNewGroup(name, gId);
 		isModify = true;
 	}
 
 	@Override
 	public void addUserToGroup(User user, Group group) {
+		assert(isXMLLoaded());
 		isModify = true;
 		myHandler.addUserToGroup(user, group);
 		
@@ -116,22 +124,23 @@ public class UserSystemImpl implements UserSystemInterface {
 
 	@Override
 	public void removeUserFromGroup(User user, Group group) {
+		assert(isXMLLoaded());
 		group.removeUserFromGroup(user);
 		isModify = true;
 	}
 
 	@Override
 	public void removeUserFromSystem(User user) {
+		assert(isXMLLoaded());
 		myHandler.removeUser(user);
 		isModify = true;
 	}
 
 	@Override
 	public void removeGroupFromSystem(Group group) {
-		assert(!group.getUsuarios().isEmpty());
+		assert(isXMLLoaded());
 		myHandler.removeGroup(group);
 		isModify = true;
-		
 	}
 
 }

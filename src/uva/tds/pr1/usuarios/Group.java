@@ -23,12 +23,12 @@ public class Group implements Serializable{
 	@Override
 	public String toString(){
 		String xmlStruct = "";
-		if(idusuarios.size() != 0){
+		if(usuarios.size() != 0){
 			xmlStruct = "<Group nombre='" + nombre + "' gid='g"
 					+ gID + "' idusuarios='";
 			
-			for(int n : idusuarios)
-				xmlStruct += " u" + n;
+			for(User u : usuarios)
+				xmlStruct += " u" + u.getuId();
 			
 			xmlStruct += "'/>";
 		} else {
@@ -41,26 +41,34 @@ public class Group implements Serializable{
 		return xmlStruct;
 	}
 	
-	public boolean appear(User user){
+	protected boolean appear(User user){
 		return usuarios.contains(user);
 	}
 	
-	public void removeUserFromGroup(User user){
-		assert(!appear(user));
+	protected void removeUserFromGroup(User user){
+		assert(appear(user));
 		user.removeGroupSecunday(this);
 		usuarios.remove(user);
 	}
 	
-	public void removeUserFromSystem(User user){
-		assert(!appear(user));
+	protected void removeAllUsers(){
+		for(User u : usuarios){
+			assert(appear(u));
+			u.removeGroupSecunday(this);
+		}
+		
+	}
+	
+	protected void removeUserFromSystem(User user){
+		assert(appear(user));
 		usuarios.remove(user);
 	}
 
-	public void setUsuarios(ArrayList<User> usuarios) {
+	protected void setUsuarios(ArrayList<User> usuarios) {
 		this.usuarios = usuarios;
 	}
 
-	public boolean erasable() {
+	protected boolean erasable() {
 		for(User u : usuarios){
 			if(u.getGrupoPrincipal().equals(this))
 				return false;
@@ -70,7 +78,6 @@ public class Group implements Serializable{
 	
 	public void addUser(User user) {
 		assert(!usuarios.contains(user));
-		user.addGrupoSecundario(this);
 		usuarios.add(user);
 	}
 	
@@ -78,17 +85,28 @@ public class Group implements Serializable{
 		return gID;
 	}
 
-	public void setgID(int gID) {
+	protected void setgID(int gID) {
 		this.gID = gID;
+	}
+	
+	public void changeGID(int gid){
+		mySystem.changeGID(gid, this);
 	}
 
 	public String getNombre(){
 		return nombre;	
 	}
 	
+	public void changeNombre(String nombre){
+		mySystem.changeGroupName(nombre, this);
+	}
 	
-	public ArrayList<User> getUsuarios(){
+	protected ArrayList<User> getUsuarios(){
 		return usuarios;
+	}
+	
+	protected void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 
 }
