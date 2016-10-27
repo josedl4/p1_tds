@@ -363,11 +363,12 @@ public class UserHandler extends DefaultHandler{
 	}
 
 	protected void setNewGrupoPrincipal(Group group, User user) {
-		assert(usuarios.contains(group));
+		assert(grupos.contains(group));
 		if(user.getGrupoSecundario().contains(group))
 			throw new IllegalArgumentException("El grupo " + group.getNombre() +
 					" es uno de los grupos secundarios y no puede ser añadido como grupo principal");
-		user.getGrupoPrincipal().removeUserFromGroup(user);
+		user.getGrupoPrincipal().changeMainGroupFromUser(user);
+		group.addUser(user);
 		user.setGrupoPrincipal(group);
 	}
 }

@@ -6,7 +6,11 @@ import uva.tds.pr1.usuarios.*;
 /**
  * Nuestra clase Main para cargar un archivo xml que almacenará la información de usuarios 
  * del sistema según una DTD definida. 
- * Hace uso de los servicios de la implementación y pruebas
+ * 
+ * Hace uso de los servicios de la implementación y pruebas.
+ * 
+ * Ejerce el papel de clase cliente que usa nuestras clases desarrolladas en el paquete uva.tds.pr1.usuarios
+ * 
  * @author Jose Luis Martín Martín
  * @author Juan Carlos Blázquez Muñoz
  */
@@ -51,6 +55,17 @@ public class Main {
 		
 		// Borrar el grupo con ID = g1000 creado anteriormente
 		us.removeGroupFromSystem(g1000);
+		
+		us.createNewGroup("NewGroup", 23);
+		Group g23 = us.getGroupById(23);
+		User u2 = us.getUserById(2);
+		u2.setNewGrupoPrincipal(g23);
+		User u4 = us.getUserById(4);
+		u4.setNewGrupoPrincipal(g23);
+		User u6 = us.getUserById(6);
+		us.removeUserFromSystem(u6);
+		
+		//us.removeGroupFromSystem(us.getGroupById(2));
 		
 		// Comprobamos el estado de nuestra instancia sistema respecto a la información del XML
 		System.out.println("Resultado esperado <<true>> ya que se ha modificado el XML --> " 

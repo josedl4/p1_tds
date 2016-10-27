@@ -2,8 +2,11 @@ package uva.tds.pr1.usuarios;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+
 /**
- * Clase que representa a los usuarios.
+ * Implementación de los usuarios de un sistema Unix.
+ * 
  * @author Jose Luis Martín Martín
  * @author Juan Carlos Blázquez Muñoz
  */
@@ -20,17 +23,19 @@ public class User implements Serializable{
 	private ArrayList<Integer> grupoSecundarioID;
 	private UserHandler mySystem;
 	
+	
 	/**
-	 * Permite crear un Usuario tras la especificacion de sus atributos.
-	 * @param nombre 
-	 * @param passwd Contraseña
-	 * @param directorio 
+	 * Constructor para crear el objeto inicial a partir te los datos obtenidos de una DTD.
+	 * 
+	 * @param nombre Nombre que tiene el usuario 
+	 * @param passwd Contraseña del usuario
+	 * @param directorio Directorio del usuario
 	 * @param uId Identificador del usuario
-	 * @param shell 
-	 * @param nombreCompleto
+	 * @param shell Shell seleccinada por el usuario
+	 * @param nombreCompleto Nombre completo del usuario
 	 * @param grupoPrincipalID Identificador del grupo Principal
 	 * @param grupoSecundarioID Identificadores de los grupos Secundarios
-	 * @param mySystem Sistema
+	 * @param mySystem Sistema Referencia al sistema que gestiona a dicho usuario.
 	 */
 	protected User(String nombre, String passwd, String directorio, int uId, EnumShell shell,
 			String nombreCompleto, int grupoPrincipalID, ArrayList<Integer> grupoSecundarioID,
@@ -46,13 +51,14 @@ public class User implements Serializable{
 		this.mySystem = mySystem;
 	}
 	
-	/**
-	 * Métodos públicos para ser usados desde una clase cliente.
-	 */
+	
+	// Métodos públicos accesibles desde una clase cliente.
 	
 	/**
-	 * ##################################################################
-	 * @return xmlStruct 
+	 * Redefine el metodo toString de Object para mostrar el estado de nuestro objeto usuario
+	 * con el formato de nuestra DTD.
+	 * 
+	 * @return xmlStruct String devuelto en el cual tenemos la información sobre el usuario.
 	 */
 	@Override
 	public String toString() {
@@ -74,17 +80,21 @@ public class User implements Serializable{
 		
 		return xmlStruct;
 	}
+	
 
 	/**
 	 * Permite obtener el Grupo Principal de un usuario.
+	 * 
 	 * @return grupoPrincipalID Identificador del grupo Principal.
 	 */
 	public int getGrupoPrincipalID() {
 		return grupoPrincipalID;
 	}
 
+	
 	/**
 	 * Permite modificar el Grupo Principal de un usuario.
+	 * 
 	 * @param group Grupo Principal nuevo del usuario.
 	 */
 	// Implementar en el Handler para que pueda ser usado por el cliente
@@ -92,40 +102,50 @@ public class User implements Serializable{
 		mySystem.setNewGrupoPrincipal(group, this);
 	}
 
+	
 	/**
 	 * Permite obtener el Identificador de un usuario.
+	 * 
 	 * @return uId Identificador del usuario.
 	 */	
 	public int getuId() {
 		return uId;
 	}
 
+	
 	/**
 	 * Permite modificar el UID de un usuario.
+	 * 
 	 * @param uid Identificador nuevo del usuario. 
 	 */
 	public void setUserID(int uid){
 		mySystem.setUserID(uid, this);
 	}
 
+	
 	/**
 	 * Permite obtener el Nombre de un usuario.
+	 * 
 	 * @return nombre Identificador del usuario.
 	 */	
 	public String getNombre() {
 		return nombre;
 	}
 
+	
 	/**
 	 * Permite modificar el nombre de un usuario.
+	 * 
 	 * @param nombre Nombre nuevo del usuario. 
 	 */	
 	public void changeNombre(String nombre) {
 		mySystem.changeUserName(nombre, this);
 	}
 	
+	
 	/**
 	 * Permite obtener la contraseña de un usuario.
+	 * 
 	 * @return passwd Contraseña del usuario.
 	 */	
 	public String getPasswd() {
@@ -134,93 +154,112 @@ public class User implements Serializable{
 	
 	/**
 	 * Permite modificar la contraseña de un usuario.
+	 * 
 	 * @param passwd Contraseña nueva del usuario. 
 	 */	
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
+	
+	
 	/**
 	 * Permite obtener el directorio de un usuario.
+	 * 
 	 * @return directorio Directorio del usuario.
 	 */	
 	public String getDirectorio() {
 		return directorio;
 	}
 
+	
 	/**
 	 * Permite modificar el directorio de un usuario.
+	 * 
 	 * @param directorio Directorio nuevo del usuario. 
 	 */	
 	public void setDirectorio(String directorio) {
 		this.directorio = directorio;
 	}
+	
+	
 	/**
 	 * Permite obtener el Shell de un usuario.
+	 * 
 	 * @return shell Shell del usuario.
 	 */	
 	public EnumShell getShell() {
 		return shell;
 	}
 
+	
 	/**
 	 * Permite modificar el Shell de un usuario.
+	 * 
 	 * @param shell Shell nuevo del usuario. 
 	 */	
 	public void setShell(EnumShell shell) {
 		this.shell = shell;
 	}
 	
+	
 	/**
 	 * Permite obtener el nombre completo de un usuario.
+	 * 
 	 * @return nombreCompleto Nombre completo del usuario.
 	 */	
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
 	
+	
 	/**
 	 * Permite modificar el nombre completo de un usuario.
+	 * 
 	 * @param nombreCompleto Nombre completo nuevo del usuario. 
 	 */	
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
 	
-	/**
-	 * Métodos protegidos para el uso interno del paquete.
-	 */
+	
+	// Métodos protegidos para el uso interno del paquete.
 		
 	/**
-	 * #################################################################
-	 * Permite saber si un grupo es secundario.
-	 * @param grupo Grupo. 
-	 * @return boolean.
-	 */	
-	// Hecho - no tocar
+	 * Metodo usado por nuesto sistema, comprueba si el grupo que
+	 * ser recibe es uno de los grupos secundarios.
+	 * 
+	 * @param grupo Grupo a consultar. 
+	 * @return result Valor de la consulta.
+	 */
 	protected boolean appear(Group group){
 		return grupoSecundario.contains(group);
 	}
 	
+	
 	/**
-	 * Permite eliminar un Grupo Secundario.
-	 * @param grupo Grupo. 
-	 */	
-	// Hecho - no tocar
+	 * Permite eliminar un Grupo Secundario del sistema.
+	 * 
+	 * @param grupo Grupo a ser eleminado. 
+	 */
 	protected void removeGroupSecunday(Group group){
 		assert(appear(group));
 		grupoSecundario.remove(group);
 	}
 	
+	
 	/**
 	 * Permite añadir un grupo secundario.
-	 * @param grupo Grupo. 
+	 * 
+	 * @param grupo Grupo a ser añadido. 
 	 */	
 	protected void addGrupoSecundario(Group group){
 		grupoSecundario.add(group);
 	}
 	
+	
 	/**
 	 * Permite modificar el grupo principal.
+	 * 
 	 * @param grupoPrincipalID Grupo principal.. 
 	 */	
 	protected void setGrupoPrincipalID(int grupoPrincipalID) {
@@ -228,63 +267,68 @@ public class User implements Serializable{
 	}
 
 	/**
-	 * #################################################################
-	 * @return grupoSecundarioID 
+	 * Devuelve al sistema una lista de GIDs de los grupos secundarios de este usuario
+	 * 
+	 * @return grupoSecundarioID Lista de GIDs de los grupos secundarios
 	 */	
 	protected ArrayList<Integer> getGrupoSecundarioID() {
 		return grupoSecundarioID;
 	}
 	
-	/**
-	 * #################################################################
-	 * @return grupoSecundarioID 
-	 */
-	protected void setGrupoSecundarioID(ArrayList<Integer> grupoSecundarioID) {
-		this.grupoSecundarioID = grupoSecundarioID;
-	}
 	
 	/**
-	 * Permite modificar el uId de un usuario.
+	 * Permite modificar el uId de un usuario, por nuestro sistema.
+	 * 
 	 * @param uId Identificador del usuario. 
 	 */	
 	protected void setuId(int uId) {
 		this.uId = uId;
 	}
 	
+	
 	/**
-	 * Permite obtener el grupo principal.
+	 * Permite obtener el grupo principal, por nuestro sistema.
+	 * 
 	 * @return grupoPrincipal Grupo principal.
 	 */	
 	protected Group getGrupoPrincipal() {
 		return grupoPrincipal;
 	}
 
+	
 	/**
-	 * Permite modificar el grupo principal de un usuario.
+	 * Permite modificar el grupo principal de un usuario, por nuestro sistema.
+	 * 
 	 * @param grupoPrincipal Grupo principal nuevo del usuario. 
 	 */	
 	protected void setGrupoPrincipal(Group grupoPrincipal) {
 		this.grupoPrincipal = grupoPrincipal;
 	}
 
+	
 	/**
-	 * #################################################################
-	 * @return grupoSecundario
+	 * Devuelve una lista de los grupos secundarios que tiene dicho usuario
+	 * 
+	 * @return grupoSecundario Lista de grupos secundarios
 	 */
 	protected ArrayList<Group> getGrupoSecundario() {
 		return grupoSecundario;
 	}
 
+	
 	/**
-	 * Permite modificar el grupo secundario de un usuario.
-	 * @param grupoSecundario Grupo secundario nuevo del usuario. 
+	 * Permite modificar la lista de grupos secundarios de un usuario, por nuestro sistema.
+	 * 
+	 * @param grupoSecundario Lista de Grups secundarios del usuario. 
 	 */	
 	protected void setGrupoSecundario(ArrayList<Group> grupoSecundario) {
 		this.grupoSecundario = grupoSecundario;
 	}
 	
+	
 	/**
-	 * Permite modificar el nombre de un usuario.
+	 * Permite modificar el nombre de un usuario, por nuestro sistema.
+	 * 
 	 * @param nombreCompleto Nombre nuevo del usuario. 
 	 */	
 	protected void setNombre(String nombre) {
