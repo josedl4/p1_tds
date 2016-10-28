@@ -1,0 +1,33 @@
+Equipo 2, Práctica 1
+  MH: 16h
+  SLOC: 1316
+  LLOC: 784
+  NOC: 7 Clases Propias y 15 de terceros.
+
+  Clases propias:
+    uva.tds.pr1.g02.EnumShell
+	uva.tds.pr1.g02.Group
+	uva.tds.pr1.g02.User
+	uva.tds.pr1.g02.UserHandler
+	uva.tds.pr1.g02.UserSystemImpl
+	uva.tds.pr1.g02.UserSystemInterface
+	uva.tds.pr1.main.Main
+
+  Clases de terceros:
+	java.io.FileOutputStream;
+	java.io.StringReader;
+	java.io.StringWriter;
+	java.nio.file.Path;
+	java.util.ArrayList;
+
+	javax.xml.stream.XMLOutputFactory;
+	javax.xml.stream.XMLStreamWriter;
+	javax.xml.transform.OutputKeys;
+	javax.xml.transform.Transformer;
+	javax.xml.transform.TransformerFactory;
+	javax.xml.transform.stream.StreamResult;
+	javax.xml.transform.stream.StreamSource;
+
+	org.xml.sax.SAXException;
+	org.xml.sax.SAXParseException;
+	org.xml.sax.helpers.DefaultHandler;
