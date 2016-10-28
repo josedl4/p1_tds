@@ -1,8 +1,7 @@
-package uva.tds.pr1.usuarios;
+package uva.tds.pr1.g02;
 
 /**
- * enum de los diferentes valores que puede adoptar el Shell.
- *
+ * Enum de los diferentes valores que puede adoptar el Shell.
  */
 
 public enum EnumShell {

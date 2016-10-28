@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT System (User*, Group*)>
+<!ELEMENT System (User+, Group+)>
 
 <!-- Usuario -->
 <!ELEMENT User EMPTY>

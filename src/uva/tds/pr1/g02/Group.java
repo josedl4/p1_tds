@@ -1,9 +1,6 @@
-package uva.tds.pr1.usuarios;
+package uva.tds.pr1.g02;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import javax.jws.soap.SOAPBinding.Use;
 
 
 /**
@@ -12,7 +9,8 @@ import javax.jws.soap.SOAPBinding.Use;
  * @author Jose Luis Martín Martín
  * @author Juan Carlos Blázquez Muñoz
  */
-public class Group implements Serializable{
+@SuppressWarnings("unused")
+public class Group{
 	private String nombre;
 	private int gID;
 	private ArrayList<Integer> idusuarios;

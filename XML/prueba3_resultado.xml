@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "usuariosUnix.dtd">
+<System>
+    <User nombre="user6" passwd="cotraseña" directorio="HOME" uid="u6" shell="BASH" grupoPrincipal=" g2" grupoSecundario=" g4"/>
+    <Group nombre="grupo1" gid="g1"/>
+    <Group nombre="grupo2" idusuarios=" u6" gid="g2"/>
+    <Group nombre="grupo4" idusuarios=" u6" gid="g4"/>
+</System>

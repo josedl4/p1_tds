@@ -10,7 +10,7 @@
   
   
   <Group nombre="grupo1" idusuarios="u01 u03 u05" gid="g01"/>
-  <Group nombre="grupo2" idusuarios="u02 u04 u06" gid="g02"/>
+  <Group nombre="grupo2" idusuarios="u02 u04 u07" gid="g02"/>
   <Group nombre="grupo3" gid="g03"/>
   <Group nombre="grupo4" idusuarios="u01 u02" gid="g04"/>
 </System>

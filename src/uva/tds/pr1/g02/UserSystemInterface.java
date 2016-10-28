@@ -1,4 +1,4 @@
-package uva.tds.pr1.usuarios;
+package uva.tds.pr1.g02;
 
 import java.nio.file.Path;
 

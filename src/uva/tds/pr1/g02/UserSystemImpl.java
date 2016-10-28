@@ -1,17 +1,13 @@
-package uva.tds.pr1.usuarios;
+package uva.tds.pr1.g02;
 
 import java.io.File;
-import java.io.FileReader;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 
 public class UserSystemImpl implements UserSystemInterface {
@@ -34,8 +30,6 @@ public class UserSystemImpl implements UserSystemInterface {
 			SAXParser parser = factory.newSAXParser();
 			
 			DefaultHandler handler = new UserHandler();
-			XMLReader reader = parser.getXMLReader();
-			//reader.parse(new InputSource(pathToXML.toString()));
 			parser.parse(new InputSource(pathToXML.toString()), handler);
 			
 			myHandler = (UserHandler) handler;

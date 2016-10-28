@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE System SYSTEM "usuariosUnix.dtd" >
 <System>
-  <User nombre='user1' passwd="cotraseña" directorio="HOME" uid="u01" grupoPrincipal="g01" grupoSecundario="g04"/>
+  <User nombre='user1' passwd="cotraseña" uid="u01" grupoPrincipal="g01" grupoSecundario="g04"/>
   <User nombre="user2" passwd="cotraseña" directorio="HOME" uid="u02" grupoPrincipal="g02" grupoSecundario="g04"/>
   <User nombre="user3" passwd="cotraseña" directorio="HOME" uid="u03" grupoPrincipal="g01"/>
   <User nombre="user4" passwd="cotraseña" directorio="HOME" uid="u04" grupoPrincipal="g02"/>

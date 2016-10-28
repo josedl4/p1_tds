@@ -1,6 +1,5 @@
-package uva.tds.pr1.usuarios;
+package uva.tds.pr1.g02;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  * @author Jose Luis Martín Martín
  * @author Juan Carlos Blázquez Muñoz
  */
-public class User implements Serializable{
+public class User{
 	private String nombre;
 	private String passwd;
 	private String directorio;

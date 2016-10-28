@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "usuariosUnix.dtd" >
+<System>
+    
+  <Group nombre="grupo1" gid="g01"/>
+  <Group nombre="grupo2" gid="g02"/>
+  <Group nombre="grupo3" gid="g03"/>
+  <Group nombre="grupo4" gid="g04"/>
+</System>
