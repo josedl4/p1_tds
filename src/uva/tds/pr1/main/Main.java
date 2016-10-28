@@ -2,7 +2,7 @@ package uva.tds.pr1.main;
 
 import java.io.File;
 
-import uva.tds.pr1.g02.*;
+import uva.tds.pr1.equipo02.*;
 
 /**
  * Nuestra clase Main para cargar un archivo xml que almacenará la información de usuarios 
@@ -216,7 +216,7 @@ public class Main {
 		
 		// Cargamos contenido del primer fichero XML como contenido del sistema
 		try{us.loadFrom(fileIn.toPath());} catch (Throwable e) {
-			System.out.println("Error esperada, XML no valido respecto a DTD: " + e);
+			System.out.println("Error esperado, XML no valido respecto a DTD: " + e);
 		}
 	}
 
@@ -231,7 +231,7 @@ public class Main {
 		
 		// Cargamos contenido del primer fichero XML como contenido del sistema
 		try{us.loadFrom(fileIn.toPath());} catch (Throwable e) {
-			System.out.println("Error esperada, XML no valido respecto a DTD: " + e);
+			System.out.println("Error esperado, XML no valido respecto a DTD: " + e);
 		}
 	}
 	
@@ -246,7 +246,7 @@ public class Main {
 		
 		// Cargamos contenido del primer fichero XML como contenido del sistema
 		try{us.loadFrom(fileIn.toPath());} catch (Throwable e) {
-			System.out.println("Error esperada, XML no valido respecto a DTD: " + e);
+			System.out.println("Error esperado, XML no valido respecto a DTD: " + e);
 		}
 	}
 	
@@ -261,7 +261,7 @@ public class Main {
 		
 		// Cargamos contenido del primer fichero XML como contenido del sistema
 		try{us.loadFrom(fileIn.toPath());} catch (Throwable e) {
-			System.out.println("Error esperada, XML no valido respecto a DTD: " + e);
+			System.out.println("Error esperado, XML no valido respecto a DTD: " + e);
 		}
 	}
 }

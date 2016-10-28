@@ -3,3 +3,7 @@
 
 * Jose Luis Martín Martín
 * Juan Carlos Blázquez Muñoz
+
+**Instrucciones de Ejecución:**
+* Importar proyecto Eclipse
+* Añadir parametro de Ejecución "-ea"
